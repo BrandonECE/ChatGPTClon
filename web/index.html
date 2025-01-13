@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    Configura el atributo href del elemento base para servir tu aplicación
+    desde una ubicación específica. Ajusta $FLUTTER_BASE_HREF según tu caso.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="flutter_application_alon2">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>flutter_application_alon2</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script>
+    // Evento para inicializar Flutter cuando la ventana se haya cargado
+    window.addEventListener('load', function(ev) {
+      // Este bloque se encarga de agregar la inicialización de Flutter
+      {{flutter_js}}
+      {{flutter_build_config}}
+
+      // Descarga y carga el archivo main.dart.js
+      _flutter.loader.load({
+        serviceWorker: {
+          // Configuración del service worker
+          serviceWorkerVersion: "{{flutter_service_worker_version}}",
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          // Inicializa el motor de Flutter y ejecuta la aplicación
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
